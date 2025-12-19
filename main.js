@@ -83,9 +83,6 @@ function updateScrollProgress() {
   
   window.addEventListener('scroll', updateActiveSection, { passive: true });
   
-  // Also update on page load
-  updateActiveSection();
-  
   // ============================================
   // Smooth Scroll to Section
   // ============================================
@@ -468,11 +465,16 @@ function updateScrollProgress() {
       console.error('Error creating digital timeline:', e);
     }
     
-    // Initialize scroll features
+      // Initialize scroll features
     updateActiveSection();
     updateNavbar();
     updateScrollProgress();
     updateScrollToTop();
+    
+    // Update active section again after a short delay to ensure sections are positioned
+    setTimeout(() => {
+      updateActiveSection();
+    }, 200);
     
     console.log('All features initialized');
   }
