@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Ada Tamia B. Misplacido | ED 206 E-Portfolio</title>
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="scroll-progress"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="navbar">
+    <div class="navbar-container">
+      <button class="navbar-brand" onclick="scrollToSection('home')">Ada Tamia B. Misplacido</button>
+      <div class="navbar-menu-desktop">
+        <button class="nav-item" data-section="about" onclick="scrollToSection('about')">About Me</button>
+        <button class="nav-item" data-section="ed206" onclick="scrollToSection('ed206')">About ED 206</button>
+        <button class="nav-item" data-section="overview" onclick="scrollToSection('overview')">Overview</button>
+        <button class="nav-item" data-section="media" onclick="scrollToSection('media')">Media Literacy</button>
+        <button class="nav-item" data-section="financial" onclick="scrollToSection('financial')">Financial Literacy</button>
+        <button class="nav-item" data-section="digital" onclick="scrollToSection('digital')">Digital Literacy</button>
+        <button class="nav-item" data-section="eco" onclick="scrollToSection('eco')">Eco Literacy</button>
+        <button class="nav-item" data-section="references" onclick="scrollToSection('references')">References</button>
+      </div>
+      <button class="navbar-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="navbar-menu-mobile">
+      <button class="nav-item-mobile" data-section="about" onclick="scrollToSection('about')">About Me</button>
+      <button class="nav-item-mobile" data-section="ed206" onclick="scrollToSection('ed206')">About ED 206</button>
+      <button class="nav-item-mobile" data-section="overview" onclick="scrollToSection('overview')">Overview</button>
+      <button class="nav-item-mobile" data-section="media" onclick="scrollToSection('media')">Media Literacy</button>
+      <button class="nav-item-mobile" data-section="financial" onclick="scrollToSection('financial')">Financial Literacy</button>
+        <button class="nav-item-mobile" data-section="digital" onclick="scrollToSection('digital')">Digital Literacy</button>
+        <button class="nav-item-mobile" data-section="eco" onclick="scrollToSection('eco')">Eco Literacy</button>
+        <button class="nav-item-mobile" data-section="references" onclick="scrollToSection('references')">References</button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="section-hero">
+      <div class="hero-decorative">
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+      </div>
+      <div class="hero-container">
+        <div class="hero-grid">
+          <div class="hero-portrait animate-fade-in">
+            <div class="portrait-wrapper">
+              <div class="portrait-card">
+                <img src="public/assets/face.JPEG" alt="Ada Tamia B. Misplacido, Preservice Special Needs Educator" class="portrait-image">
+              </div>
+              <div class="portrait-decoration"></div>
+            </div>
+          </div>
+          <div class="hero-content animate-fade-in" style="animation-delay: 0.1s">
+            <div class="hero-text">
+              <h1>
+                <span>Hi, I'm </span>
+                <span class="text-gradient">Ada Tamia B. Misplacido</span>
+              </h1>
+              <p class="hero-subtitle">Preservice Special Needs Educator • ED 206 E-Portfolio</p>
+              <p class="hero-description" style="animation-delay: 0.2s">
+                A journey shaped by family legacy, driven by compassion, and dedicated to creating 
+                <span class="highlight"> inclusive spaces</span> where every learner 
+                can thrive. Through this portfolio, I share my exploration of 21st-century literacies 
+                and my commitment to empowering students with diverse needs.
+              </p>
+            </div>
+            <div class="hero-quote animate-fade-in" style="animation-delay: 0.3s">
+              <div class="quote-block">
+                <blockquote>"Some vocations are chosen; others are quietly lived long before they are named."</blockquote>
+              </div>
+            </div>
+            <button class="hero-cta animate-fade-in" onclick="scrollToSection('about')" style="animation-delay: 0.4s">
+              Explore My Portfolio
+              <svg class="arrow-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="section section-white">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>About Me</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="section-content">
+          <div class="artifact-card animate-fade-in-up">
+            <div class="card-header">
+              <div class="card-icon card-icon-pink">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3>Biography</h3>
+                <p class="card-subtitle">My journey into education</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <p>Some vocations are chosen; others are quietly lived long before they are named.</p>
+              <p>I am a preservice educator specializing in special needs education, inspired by a family deeply rooted in the teaching profession. Growing up, I witnessed how my family members shaped not only learners' minds but also their confidence and sense of belonging within the community. Seeing the lasting impact of their dedication made me realize that teaching is more than a career—it is a commitment to service. These experiences guided me toward education and instilled in me a deep respect for the responsibility teachers carry.</p>
+              <p>I chose special needs education because I firmly believe that every learner, regardless of disability, status, or background, has the right to quality education and the opportunity to reach their fullest potential. I aspire to be an educator who creates <span class="highlight">inclusive</span> spaces where differences are embraced and learners are empowered to thrive. Carrying the legacy of those who inspired me, I aim to teach with compassion, <span class="highlight">advocate</span> with purpose, and contribute to a community where education becomes a bridge to dignity, growth, and lasting change.</p>
+            </div>
+          </div>
+          <div class="artifact-card artifact-card-gradient animate-fade-in-up">
+            <div class="card-header">
+              <div class="card-icon card-icon-lavender">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3>Teaching Philosophy</h3>
+                <p class="card-subtitle">Statement regarding the changing landscape of education</p>
+              </div>
+            </div>
+            <div class="card-body card-body-indent">
+              <p>My teaching philosophy is grounded in the belief that education must continuously adapt to the changing needs of today's learners in an increasingly diverse, digital, and interconnected world. Teaching is no longer limited to delivering content; it is about creating <span class="highlight">inclusive</span>, responsive, and meaningful learning experiences that recognize each learner's strengths, needs, and lived realities—especially in special education settings. I believe educators must balance innovation with <span class="highlight">empathy</span>, using technology, collaboration, and flexible strategies to empower learners while fostering independence, confidence, and <span class="highlight">lifelong learning</span>. In this evolving landscape, my role as a teacher is to guide, <span class="highlight">advocate</span>, and inspire, ensuring that every learner feels seen, valued, and capable of reaching their fullest potential.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About ED 206 Section -->
+    <section id="ed206" class="section section-gradient-soft">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>About ED 206</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="section-content">
+          <div class="artifact-card animate-fade-in-up">
+            <div class="card-content-horizontal">
+              <div class="card-icon-small card-icon-pink">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <p>ED 206 is a subject that deepened my understanding of what it truly means to be literate in the 21st century. Beyond traditional reading and writing, it introduced me to multiple literacies that are essential in navigating an ever-changing, technology-driven world. The course emphasized that being literate today means being able to critically analyze information, communicate responsibly, adapt to new platforms, and engage meaningfully with diverse perspectives. It highlighted that literacy is no longer static, but a continuous process of learning, unlearning, and reflecting.</p>
+            </div>
+          </div>
+          <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.1s">
+            <div class="card-content-horizontal">
+              <div class="card-icon-small card-icon-lavender">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <p>What made ED 206 impactful for me was its focus on becoming a disciplined consumer and a responsible citizen. The subject taught me to question sources, recognize bias, practice ethical digital behavior, and make informed decisions in both online and offline spaces. As a future educator, this course reshaped how I view my role, not only as a teacher of content, but as a guide who helps learners think critically and act responsibly in society. ED 206 has strengthened my awareness of my own responsibilities in this digital age and affirmed the importance of cultivating literacies that empower individuals to contribute thoughtfully and ethically to their communities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section section-white">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>Overview</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="section-content">
+          <div class="artifact-card artifact-card-theme animate-fade-in-up">
+            <div class="card-header">
+              <div class="card-icon card-icon-pink">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+              </div>
+              <div>
+                <h3>Theme</h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="theme-text">Educating with Purpose in an Inclusive and Changing World</p>
+              <p class="theme-text">This portfolio centers on the journey of becoming a reflective and inclusive educator who responds meaningfully to the demands of 21st-century learning. It highlights a commitment to equity, multiple literacies, and purposeful teaching that empowers all learners to thrive in a constantly evolving society.</p>
+            </div>
+          </div>
+          <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.1s">
+            <div class="card-header">
+              <div class="card-icon card-icon-lavender">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3>User Guide</h3>
+              </div>
+            </div>
+            <div class="accordion">
+              <button class="accordion-button" onclick="toggleAccordion('A')">
+                <h4>Section A: The Learner & The Course</h4>
+                <span class="accordion-arrow" id="arrow-A">▼</span>
+              </button>
+              <div id="accordion-A" class="accordion-content">
+                <button class="accordion-item" onclick="scrollToSection('about')">
+                  <span class="accordion-page">Page 1:</span> About Me
+                </button>
+                <button class="accordion-item" onclick="scrollToSection('ed206')">
+                  <span class="accordion-page">Page 2:</span> About ED 206
+                </button>
+                <button class="accordion-item" onclick="scrollToSection('overview')">
+                  <span class="accordion-page">Page 3:</span> Overview of the E-Portfolio
+                </button>
+              </div>
+              <button class="accordion-button accordion-button-lavender" onclick="toggleAccordion('B')">
+                <h4>Section B: The Literacy Units (Artifacts & Reflections)</h4>
+                <span class="accordion-arrow" id="arrow-B">▼</span>
+              </button>
+              <div id="accordion-B" class="accordion-content">
+                <button class="accordion-item" onclick="scrollToSection('media')">
+                  <span class="accordion-page">Page 4:</span> Media Literacy
+                </button>
+                <button class="accordion-item" onclick="scrollToSection('financial')">
+                  <span class="accordion-page">Page 5:</span> Financial Literacy
+                </button>
+                <button class="accordion-item" onclick="scrollToSection('digital')">
+                  <span class="accordion-page">Page 6:</span> Digital Literacy
+                </button>
+                <button class="accordion-item" onclick="scrollToSection('eco')">
+                  <span class="accordion-page">Page 7:</span> Eco Literacy
+                </button>
+                <button class="accordion-item" onclick="scrollToSection('references')">
+                  <span class="accordion-page">Page 8:</span> References
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Media Literacy Section -->
+    <section id="media" class="section section-gradient-media">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>Media Literacy</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="section-content">
+          <div class="quote-block animate-fade-in-up">
+            <blockquote>"In a world where information travels faster than truth, learning when to pause and question becomes an act of responsibility."</blockquote>
+          </div>
+          <div class="media-grid">
+            <div class="artifact-card animate-fade-in-up">
+              <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/GIaRw5R6Da4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              </div>
+            </div>
+            <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.1s">
+              <h3>Description</h3>
+              <p>Media literacy is the set of skills that enable individuals to 'access, analyze, evaluate, create, and act on information presented through all forms of media' — from social media posts and news articles to videos and advertisements. It goes beyond simply understanding what you see and hear; it teaches you to question "who" created the message, "why", and "how it might influence your beliefs or actions". In today's digital age, where information is abundant and easily manipulated, media literacy empowers people to distinguish credible sources from misinformation, recognize bias, and engage thoughtfully as both consumers and creators of media. (UNESCO)</p>
+            </div>
+          </div>
+          <div class="reflection-card animate-fade-in-up">
+            <div class="reflection-header">
+              <svg class="reflection-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <h3>Reflection</h3>
+            </div>
+            <div class="reflection-body">
+              <p>"In a world where information travels faster than truth, learning when to pause and question becomes an act of responsibility."</p>
+              <p>Media literacy has transformed the way I consume and understand the messages that surround me every day. What once felt like harmless scrolling or casual viewing now requires intentional reflection, asking who created the message, whose voices are amplified or silenced, and what emotions or beliefs are being shaped. This literacy taught me that media is never neutral; it carries influence and power. As I became more aware of this, I learned to engage with information more thoughtfully rather than accepting it at face value.</p>
+              <p>On a personal level, media literacy has helped me become a more disciplined and ethical consumer of information. I learned to verify sources, recognize bias, and be mindful of how easily misinformation can spread through a single share or comment. It challenged me to take accountability for my digital footprint and reminded me that being constantly connected requires discernment, not just access. This awareness has strengthened my sense of responsibility not only to myself, but to the communities I am part of—both online and offline.</p>
+              <p>As a future special needs educator, media literacy carries profound importance. Many learners are especially vulnerable to misleading content and harmful representations, making critical media skills essential for empowerment and protection. Media literacy has shaped my commitment to guide students toward informed, ethical, and confident participation in the digital world. In an age where media shapes identities and realities, this literacy equips me to seek truth, model integrity, and teach with purpose because informed minds build safer, more just communities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Literacy Section -->
+    <section id="financial" class="section section-gradient-financial">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>Financial Literacy</h2>
+          <div class="section-divider section-divider-gold"></div>
+        </div>
+        <div class="section-content">
+          <div class="artifact-card animate-fade-in-up">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/aRcXutXvfmM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.1s">
+            <div id="budget-chart"></div>
+          </div>
+          <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.2s">
+            <h3>Description</h3>
+            <p>Financial literacy refers to the knowledge, skills, and confidence needed to make informed and effective decisions about money including earning, spending, saving, investing, and managing debt. At its core, it helps individuals understand how financial systems work and how their choices affect their economic well-being now and in the future. In the 21st century, financial literacy has become more essential than ever due to increasingly complex financial products, digital banking, and economic uncertainty, requiring not just basic money management but also adaptability to new financial tools and environments.</p>
+          </div>
+          <div class="reflection-card animate-fade-in-up">
+            <div class="reflection-header">
+              <svg class="reflection-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <h3>Reflection</h3>
+            </div>
+            <div class="reflection-body">
+              <p>They say money can't buy happiness, but not knowing how to manage it can cost you peace of mind. Financial literacy changed the way I view my personal finances and future goals. Growing up, I often took money decisions lightly, spending without planning, reacting emotionally to purchases, and avoiding long-term thinking. Learning about budgeting, saving, and financial planning helped me realize that financial stability isn't just about having money; it's about managing it wisely so that I can support my goals, handle unexpected challenges, and build a secure future for myself and my family. Financial literacy has made me more intentional and disciplined, teaching me that every financial choice matters and that knowledge today safeguards stability tomorrow.</p>
+              <p>As someone who used to buy unnecessary things impulsively, this literacy has deepened my commitment to become a wise consumer and to also help learners develop the same skills. I recognize that many young people, including students with diverse needs, often enter adulthood without essential financial tools making them vulnerable to debt, stress, or limited opportunities. Understanding financial literacy reminds me that education should address real-life competencies alongside academics so that learners become confident, capable, and independent citizens. Today, I see financial literacy not just as a skill, but as a form of empowerment because when we learn to manage money wisely, we gain the freedom to pursue our dreams without fear.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital Literacy Section -->
+    <section id="digital" class="section section-gradient-digital">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>Digital Literacy</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="section-content">
+          <div class="artifact-card animate-fade-in-up">
+            <div class="video-container">
+              <iframe src="https://www.youtube.com/embed/3uLLivFGlfE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.1s">
+            <div id="digital-timeline"></div>
+          </div>
+          <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.2s">
+            <h3>Description</h3>
+            <p>Digital literacy refers to the ability to use digital tools, platforms, and technologies effectively, responsibly, and safely to find, evaluate, create, and communicate information. It includes skills like navigating online environments, understanding digital safety and privacy, critically assessing digital content, and using technology to solve real-world problems. In today's hyperconnected world, digital literacy is essential—not just for academic success, but for full participation in society, work, and civic life.</p>
+          </div>
+          <div class="reflection-card animate-fade-in-up">
+            <div class="reflection-header">
+              <svg class="reflection-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <h3>Reflection</h3>
+            </div>
+            <div class="reflection-body">
+              <p>In a world where screens connect us to endless information, knowing how to navigate digital spaces wisely is no longer optional, it's essential. Learning about digital literacy has reshaped the way I perceive technology and its role in shaping our interactions, learning, and decision-making. Before, I assumed being digitally skilled meant simply knowing how to operate devices or apps. However, true digital literacy goes beyond technical ability; it requires critical thinking, ethical decision-making, and the capacity to engage meaningfully with online information. I have come to understand how digital content is created, shared, and interpreted, and how it can influence beliefs, behaviors, and communities.</p>
+              <p>On a personal level, digital literacy has made me a more mindful and responsible participant in online spaces. I now consider the sources of the content I engage with, think critically before sharing information, and protect my digital footprint by practicing safe and ethical online behavior. This awareness has strengthened my ability to filter misinformation, recognize bias, and approach technology as a tool for empowerment rather than distraction. It has also made me reflect on my responsibility to model and guide responsible digital citizenship, both personally and as a future educator.</p>
+              <p>Understanding digital literacy is crucial for a future special needs educator like me because it enables me to support learners in navigating technology safely, effectively, and creatively. Many students with diverse needs are particularly vulnerable to online risks, but with proper guidance and modeling, they can harness technology for learning, communication, and self-expression. Digital literacy empowers me to create inclusive digital learning environments that foster confidence, safety, and innovation. In a world where digital spaces are integral to education, work, and social interaction, digital literacy ensures that we not only survive but thrive responsibly and purposefully in the digital age.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Eco Literacy Section -->
+    <section id="eco" class="section section-gradient-eco">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>Eco Literacy</h2>
+          <div class="section-divider section-divider-eco"></div>
+        </div>
+        <div class="section-content">
+          <div class="artifact-card artifact-card-eco animate-fade-in-up">
+            <div class="eco-header">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+              <h3>Poster</h3>
+            </div>
+            <div class="eco-poster-container">
+              <img src="public/assets/env.JPG" alt="Eco Literacy Poster" class="eco-poster-image">
+            </div>
+          </div>
+          <div class="artifact-card animate-fade-in-up" style="animation-delay: 0.1s">
+            <h3>Description</h3>
+            <p>Eco-literacy, or ecological literacy, refers to the understanding of natural systems and our place within them, and the ability to make informed decisions that support environmental sustainability. It involves recognizing how human actions impact ecosystems, learning how to interpret environmental information, and developing skills to act responsibly toward the planet. In the 21st century, eco-literacy is essential because environmental challenges like climate change, pollution, and biodiversity loss affect every community, making sustainable thinking fundamental not just for scientists, but for everyday citizens and future generations.</p>
+          </div>
+          <div class="reflection-card animate-fade-in-up">
+            <div class="reflection-header">
+              <svg class="reflection-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <h3>Reflection</h3>
+            </div>
+            <div class="reflection-body">
+              <p>Every action we take leaves a footprint on the planet, and understanding that footprint is the first step toward change. Learning about eco-literacy made me change how I see my relationship with the environment. I used to view sustainability as a distant concept, something for experts to worry about. But eco-literacy taught me that sustainability starts with everyday choices: what we consume, how we travel, how we dispose of waste, and how we understand the impact of our decisions on ecosystems near and far. It made me realize that environmental awareness isn't optional; it's a responsibility I carry as a human being and future educator.</p>
+              <p>Eco-literacy has also influenced the way I think about education itself. I now see that teaching cannot be done in isolation from the world students live in—the world's water, air, food systems, and biodiversity all shape human experiences. This literacy has made me more mindful of how I interact with nature, and more intentional about incorporating sustainability into daily habits and conversations. It encourages me to model stewardship rather than perfection, showing learners that small, consistent actions can build meaningful impact over time.</p>
+              <p>Understanding eco-literacy equips me to guide learners not only to appreciate the natural world, but also to care for it with knowledge and purpose. Many students today are keenly aware of environmental issues but lack the tools to respond constructively or confidently. Eco-literacy empowers me to help them develop critical thinking, problemsolving, and civic engagement skills that translate into real-life action, because protecting the planet is not an abstract idea, but a shared responsibility that begins with understanding, and grows into meaningful change.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="section section-white">
+      <div class="section-container">
+        <div class="section-header animate-fade-in-up">
+          <h2>References</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="section-content">
+          <div class="artifact-card animate-fade-in-up">
+            <div class="card-header">
+              <div class="card-icon card-icon-pink">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3>Works Cited</h3>
+                <p class="card-subtitle">All sources referenced in this portfolio</p>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="references-list">
+                <div class="reference-item">
+                  <p>Godoi, V. G. (2025, December 10). <em>ปลูกป่า</em>. Pinterest. <a href="https://pin.it/1LzLeok3A" target="_blank" rel="noopener noreferrer" class="reference-link">https://pin.it/1LzLeok3A</a></p>
+                </div>
+                <div class="reference-item">
+                  <p>Helpful Professor Explains! (2024, April 17). <em>Digital literacy - explained in 3 minutes!</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=3uLLivFGlfE" target="_blank" rel="noopener noreferrer" class="reference-link">https://www.youtube.com/watch?v=3uLLivFGlfE</a></p>
+                </div>
+                <div class="reference-item">
+                  <p>Learn Bright. (2023, May 11). <em>Financial Literacy—Needs and Wants | Learn about needs, wants, and opportunity costs</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=aRcXutXvfmM" target="_blank" rel="noopener noreferrer" class="reference-link">https://www.youtube.com/watch?v=aRcXutXvfmM</a></p>
+                </div>
+                <div class="reference-item">
+                  <p>Media Literacy Now. (2017, January 17). <em>What is Media Literacy?</em> [Video]. YouTube. <a href="https://www.youtube.com/watch?v=GIaRw5R6Da4" target="_blank" rel="noopener noreferrer" class="reference-link">https://www.youtube.com/watch?v=GIaRw5R6Da4</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-quote animate-fade-in-up">
+          <blockquote>"Education is not just about knowing—it is about caring, including, and becoming."</blockquote>
+          <div class="footer-info">
+            <p class="footer-name">Ada Tamia B. Misplacido</p>
+            <p>ED 206 — Electronic Portfolio</p>
+            <p>Preservice Special Needs Educator</p>
+          </div>
+        </div>
+        <div class="footer-contact animate-fade-in-up" style="animation-delay: 0.1s">
+          <h3>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Get in Touch
+          </h3>
+          <p>Interested in connecting or learning more about my journey in special needs education? Feel free to reach out.</p>
+          <div class="footer-links">
+            <a href="mailto:adatamia.misplacido@wvsu.edu.ph" class="footer-link">
+              <div class="footer-link-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <span>adatamia.misplacido@wvsu.edu.ph</span>
+            </a>
+            <div class="footer-social">
+              <a href="mailto:adatamia.misplacido@wvsu.edu.ph" class="footer-social-link" aria-label="Email">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </a>
+              <a href="https://facebook.com/ada.tamia.misplacido" target="_blank" rel="noopener noreferrer" class="footer-social-link footer-social-link-lavender" aria-label="Facebook Profile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1h3z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom animate-fade-in" style="animation-delay: 0.2s">
+        <p>&copy; <span id="current-year"></span> Ada Tamia B. Misplacido. All rights reserved.</p>
+        <p>Built with care for ED 206 — Electronic Portfolio</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top" class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script src="main.js"></script>
+</body>
+</html>
