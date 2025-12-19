@@ -13,6 +13,11 @@ function updateScrollProgress() {
   
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
   
+  // Initialize immediately if possible
+  if (document.readyState !== 'loading') {
+    updateScrollProgress();
+  }
+  
   // ============================================
   // Navbar Scroll Detection
   // ============================================
