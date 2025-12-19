@@ -134,24 +134,9 @@ function updateScrollProgress() {
   window.addEventListener('scroll', updateActiveSection, { passive: true });
   
   // ============================================
-  // Smooth Scroll to Section
+  // Smooth Scroll to Section (already defined at top)
   // ============================================
-  function scrollToSection(id) {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      toggleMobileMenu(false);
-      
-      // Update active section after scroll
-      setTimeout(() => {
-        activeSection = id;
-        updateNavItems();
-      }, 500);
-    }
-  }
-  
-  // Make it globally available
-  window.scrollToSection = scrollToSection;
+  // scrollToSection is already defined globally at the top of the file
   
   // ============================================
   // Mobile Menu Toggle
