@@ -230,6 +230,7 @@ function updateScrollProgress() {
     chartContainer.style.width = '200px';
     chartContainer.style.height = '200px';
     chartContainer.style.margin = '0 auto';
+    chartContainer.style.display = 'block';
     
     segments.forEach(segment => {
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -452,25 +453,34 @@ function updateScrollProgress() {
   // ============================================
   // Initialize on DOM Load
   // ============================================
+  let initialized = false;
+  
   function initialize() {
+    if (initialized) {
+      console.log('Already initialized, skipping...');
+      return;
+    }
+    
     console.log('Initializing portfolio features...');
+    console.log('Budget chart container exists:', !!document.getElementById('budget-chart'));
+    console.log('Digital timeline container exists:', !!document.getElementById('digital-timeline'));
     
     // Initialize charts
     try {
       createBudgetChart();
-      console.log('Budget chart initialized');
+      console.log('✓ Budget chart initialized');
     } catch (e) {
-      console.error('Error creating budget chart:', e);
+      console.error('✗ Error creating budget chart:', e);
     }
     
     try {
       createDigitalTimeline();
-      console.log('Digital timeline initialized');
+      console.log('✓ Digital timeline initialized');
     } catch (e) {
-      console.error('Error creating digital timeline:', e);
+      console.error('✗ Error creating digital timeline:', e);
     }
     
-      // Initialize scroll features
+    // Initialize scroll features
     updateActiveSection();
     updateNavbar();
     updateScrollProgress();
@@ -479,28 +489,30 @@ function updateScrollProgress() {
     // Update active section again after a short delay to ensure sections are positioned
     setTimeout(() => {
       updateActiveSection();
-    }, 200);
+    }, 300);
     
-    console.log('All features initialized');
+    initialized = true;
+    console.log('✓ All features initialized');
   }
   
-  // Run on DOM ready - multiple fallbacks
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(initialize, 50);
-    });
-  } else if (document.readyState === 'interactive' || document.readyState === 'complete') {
-    // DOM is already ready
-    setTimeout(initialize, 50);
-  } else {
-    // Fallback
+  // Run initialization when DOM is ready
+  function runInit() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(initialize, 100);
+      });
+    } else {
+      // DOM is already ready
+      setTimeout(initialize, 100);
+    }
+    
+    // Also try on window load as backup
     window.addEventListener('load', () => {
-      setTimeout(initialize, 50);
+      if (!initialized) {
+        setTimeout(initialize, 100);
+      }
     });
   }
   
-  // Also try immediately if script is at end of body
-  if (document.body) {
-    setTimeout(initialize, 100);
-  }
+  runInit();
   
