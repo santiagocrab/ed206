@@ -87,7 +87,7 @@ function updateScrollProgress() {
   const sections = ['home', 'about', 'ed206', 'overview', 'media', 'financial', 'digital', 'eco', 'references'];
   window.activeSection = 'home';
   
-  window.updateActiveSection = function() {
+  function updateActiveSection() {
     const scrollPosition = window.scrollY + 200;
     
     for (let i = sections.length - 1; i >= 0; i--) {
