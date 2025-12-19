@@ -517,5 +517,24 @@
   </button>
 
   <script src="main.js"></script>
+  <script>
+    // Emergency fallback initialization
+    window.addEventListener('load', function() {
+      console.log('Window loaded, checking initialization...');
+      setTimeout(function() {
+        if (typeof createBudgetChart === 'function') {
+          console.log('Creating budget chart...');
+          createBudgetChart();
+        }
+        if (typeof createDigitalTimeline === 'function') {
+          console.log('Creating digital timeline...');
+          createDigitalTimeline();
+        }
+        if (typeof updateActiveSection === 'function') {
+          updateActiveSection();
+        }
+      }, 500);
+    });
+  </script>
 </body>
 </html>
