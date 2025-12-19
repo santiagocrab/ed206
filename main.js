@@ -48,12 +48,18 @@ function updateScrollProgress() {
     
     for (let i = sections.length - 1; i >= 0; i--) {
       const section = document.getElementById(sections[i]);
-      if (section && section.offsetTop <= scrollPosition) {
-        if (activeSection !== sections[i]) {
-          activeSection = sections[i];
-          updateNavItems();
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          if (activeSection !== sections[i]) {
+            activeSection = sections[i];
+            updateNavItems();
+          }
+          break;
         }
-        break;
       }
     }
   }
@@ -72,6 +78,9 @@ function updateScrollProgress() {
   
   window.addEventListener('scroll', updateActiveSection, { passive: true });
   
+  // Also update on page load
+  updateActiveSection();
+  
   // ============================================
   // Smooth Scroll to Section
   // ============================================
@@ -80,6 +89,12 @@ function updateScrollProgress() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       toggleMobileMenu(false);
+      
+      // Update active section after scroll
+      setTimeout(() => {
+        activeSection = id;
+        updateNavItems();
+      }, 500);
     }
   }
   
@@ -418,12 +433,23 @@ function updateScrollProgress() {
   // ============================================
   // Initialize on DOM Load
   // ============================================
-  document.addEventListener('DOMContentLoaded', () => {
-    createBudgetChart();
-    createDigitalTimeline();
-    updateActiveSection();
-    updateNavbar();
-    updateScrollProgress();
-    updateScrollToTop();
-  });
+  function initialize() {
+    // Wait a bit to ensure DOM is fully ready
+    setTimeout(() => {
+      createBudgetChart();
+      createDigitalTimeline();
+      updateActiveSection();
+      updateNavbar();
+      updateScrollProgress();
+      updateScrollToTop();
+    }, 100);
+  }
+  
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    // DOM is already ready
+    initialize();
+  }
   
