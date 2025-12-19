@@ -66,6 +66,10 @@ function updateScrollProgress() {
   
   function updateNavItems() {
     const navItems = document.querySelectorAll('.nav-item, .nav-item-mobile');
+    if (navItems.length === 0) {
+      console.warn('No nav items found');
+      return;
+    }
     navItems.forEach(item => {
       const section = item.getAttribute('data-section');
       if (section === activeSection) {
@@ -74,6 +78,7 @@ function updateScrollProgress() {
         item.classList.remove('active');
       }
     });
+    console.log('Active section updated to:', activeSection);
   }
   
   window.addEventListener('scroll', updateActiveSection, { passive: true });
@@ -446,22 +451,49 @@ function updateScrollProgress() {
   // Initialize on DOM Load
   // ============================================
   function initialize() {
-    // Wait a bit to ensure DOM is fully ready
-    setTimeout(() => {
+    console.log('Initializing portfolio features...');
+    
+    // Initialize charts
+    try {
       createBudgetChart();
+      console.log('Budget chart initialized');
+    } catch (e) {
+      console.error('Error creating budget chart:', e);
+    }
+    
+    try {
       createDigitalTimeline();
-      updateActiveSection();
-      updateNavbar();
-      updateScrollProgress();
-      updateScrollToTop();
-    }, 100);
+      console.log('Digital timeline initialized');
+    } catch (e) {
+      console.error('Error creating digital timeline:', e);
+    }
+    
+    // Initialize scroll features
+    updateActiveSection();
+    updateNavbar();
+    updateScrollProgress();
+    updateScrollToTop();
+    
+    console.log('All features initialized');
   }
   
-  // Run on DOM ready
+  // Run on DOM ready - multiple fallbacks
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialize);
-  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(initialize, 50);
+    });
+  } else if (document.readyState === 'interactive' || document.readyState === 'complete') {
     // DOM is already ready
-    initialize();
+    setTimeout(initialize, 50);
+  } else {
+    // Fallback
+    window.addEventListener('load', () => {
+      setTimeout(initialize, 50);
+    });
+  }
+  
+  // Also try immediately if script is at end of body
+  if (document.body) {
+    setTimeout(initialize, 100);
   }
   
