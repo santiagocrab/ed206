@@ -1,4 +1,43 @@
 // ============================================
+// Global Functions - Define Early
+// ============================================
+// Define scrollToSection immediately so it's available for onclick handlers
+window.scrollToSection = function(id) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (typeof toggleMobileMenu === 'function') {
+      toggleMobileMenu(false);
+    }
+    
+    // Update active section after scroll
+    setTimeout(() => {
+      window.activeSection = id;
+      if (typeof updateNavItems === 'function') {
+        updateNavItems();
+      }
+    }, 500);
+  }
+};
+
+// Define toggleMobileMenu early
+window.toggleMobileMenu = function(force) {
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (!mobileMenu) return;
+  
+  if (force !== undefined) {
+    mobileMenu.classList.toggle('open', force);
+  } else {
+    mobileMenu.classList.toggle('open');
+  }
+};
+
+// Define scrollToTop early
+window.scrollToTop = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// ============================================
 // Scroll Progress Bar
 // ============================================
 function updateScrollProgress() {
@@ -46,7 +85,7 @@ function updateScrollProgress() {
   // Active Section Detection
   // ============================================
   const sections = ['home', 'about', 'ed206', 'overview', 'media', 'financial', 'digital', 'eco', 'references'];
-  let activeSection = 'home';
+  window.activeSection = 'home';
   
   window.updateActiveSection = function() {
     const scrollPosition = window.scrollY + 200;
@@ -59,15 +98,18 @@ function updateScrollProgress() {
         const sectionBottom = sectionTop + sectionHeight;
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          if (activeSection !== sections[i]) {
-            activeSection = sections[i];
+          if (window.activeSection !== sections[i]) {
+            window.activeSection = sections[i];
             updateNavItems();
           }
           break;
         }
       }
     }
-  };
+  }
+  
+  // Make updateActiveSection globally available
+  window.updateActiveSection = updateActiveSection;
   
   function updateNavItems() {
     const navItems = document.querySelectorAll('.nav-item, .nav-item-mobile');
@@ -77,14 +119,17 @@ function updateScrollProgress() {
     }
     navItems.forEach(item => {
       const section = item.getAttribute('data-section');
-      if (section === activeSection) {
+      if (section === window.activeSection) {
         item.classList.add('active');
       } else {
         item.classList.remove('active');
       }
     });
-    console.log('Active section updated to:', activeSection);
+    console.log('Active section updated to:', window.activeSection);
   }
+  
+  // Make updateNavItems globally available
+  window.updateNavItems = updateNavItems;
   
   window.addEventListener('scroll', updateActiveSection, { passive: true });
   
@@ -137,11 +182,7 @@ function updateScrollProgress() {
     }
   }
   
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  
-  window.scrollToTop = scrollToTop;
+  // scrollToTop is already defined globally at the top of the file
   window.addEventListener('scroll', updateScrollToTop, { passive: true });
   
   // ============================================
