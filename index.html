@@ -516,24 +516,53 @@
     </svg>
   </button>
 
-  <script src="main.js"></script>
   <script>
-    // Emergency fallback initialization
+    // Load main.js dynamically with error handling
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'main.js';
+      script.async = false;
+      script.onerror = function() {
+        console.error('Failed to load main.js from root, trying ./main.js');
+        const script2 = document.createElement('script');
+        script2.src = './main.js';
+        script2.async = false;
+        document.head.appendChild(script2);
+      };
+      script.onload = function() {
+        console.log('main.js loaded successfully');
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+  <script>
+    // Emergency fallback initialization - wait longer for script to load
     window.addEventListener('load', function() {
       console.log('Window loaded, checking initialization...');
       setTimeout(function() {
+        console.log('Checking for functions...');
+        console.log('createBudgetChart:', typeof createBudgetChart);
+        console.log('createDigitalTimeline:', typeof createDigitalTimeline);
+        console.log('updateActiveSection:', typeof updateActiveSection);
+        
         if (typeof createBudgetChart === 'function') {
           console.log('Creating budget chart...');
           createBudgetChart();
+        } else {
+          console.error('createBudgetChart function not found!');
         }
         if (typeof createDigitalTimeline === 'function') {
           console.log('Creating digital timeline...');
           createDigitalTimeline();
+        } else {
+          console.error('createDigitalTimeline function not found!');
         }
         if (typeof updateActiveSection === 'function') {
           updateActiveSection();
+        } else {
+          console.error('updateActiveSection function not found!');
         }
-      }, 500);
+      }, 1500);
     });
   </script>
 </body>
