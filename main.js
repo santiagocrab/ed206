@@ -170,7 +170,13 @@ function updateScrollProgress() {
   // ============================================
   function createBudgetChart() {
     const container = document.getElementById('budget-chart');
-    if (!container) return;
+    if (!container) {
+      console.warn('Budget chart container not found');
+      return;
+    }
+    
+    // Clear container first
+    container.innerHTML = '';
     
     const budgetData = [
       { label: 'Needs', value: 50, color: '#E87899' },
@@ -334,7 +340,13 @@ function updateScrollProgress() {
   // ============================================
   function createDigitalTimeline() {
     const container = document.getElementById('digital-timeline');
-    if (!container) return;
+    if (!container) {
+      console.warn('Digital timeline container not found');
+      return;
+    }
+    
+    // Clear container first
+    container.innerHTML = '';
     
     const milestones = [
       {
