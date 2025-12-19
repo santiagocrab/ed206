@@ -495,7 +495,7 @@
               </a>
               <a href="https://facebook.com/ada.tamia.misplacido" target="_blank" rel="noopener noreferrer" class="footer-social-link footer-social-link-lavender" aria-label="Facebook Profile">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1h3z"/>
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1h3z" fill="currentColor"/>
                 </svg>
               </a>
             </div>
@@ -516,53 +516,63 @@
     </svg>
   </button>
 
+  <!-- Critical functions inline to work even if main.js fails to load -->
   <script>
-    // Load main.js dynamically with error handling
-    (function() {
-      const script = document.createElement('script');
-      script.src = 'main.js';
-      script.async = false;
-      script.onerror = function() {
-        console.error('Failed to load main.js from root, trying ./main.js');
-        const script2 = document.createElement('script');
-        script2.src = './main.js';
-        script2.async = false;
-        document.head.appendChild(script2);
-      };
-      script.onload = function() {
-        console.log('main.js loaded successfully');
-      };
-      document.head.appendChild(script);
-    })();
+    // Define essential functions immediately
+    window.scrollToSection = function(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu) mobileMenu.classList.remove('open');
+      }
+    };
+    
+    window.toggleMobileMenu = function(force) {
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!mobileMenu) return;
+      if (force !== undefined) {
+        mobileMenu.classList.toggle('open', force);
+      } else {
+        mobileMenu.classList.toggle('open');
+      }
+    };
+    
+    window.scrollToTop = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    
+    window.toggleAccordion = function(section) {
+      const content = document.getElementById('accordion-' + section);
+      const arrow = document.getElementById('arrow-' + section);
+      if (!content || !arrow) return;
+      const isOpen = content.classList.contains('open');
+      document.querySelectorAll('.accordion-content').forEach(acc => acc.classList.remove('open'));
+      document.querySelectorAll('.accordion-arrow').forEach(arr => arr.classList.remove('rotated'));
+      if (!isOpen) {
+        content.classList.add('open');
+        arrow.classList.add('rotated');
+      }
+    };
   </script>
+  
+  <!-- Load main.js -->
+  <script src="main.js"></script>
+  
+  <!-- Fallback if main.js fails -->
   <script>
-    // Emergency fallback initialization - wait longer for script to load
     window.addEventListener('load', function() {
-      console.log('Window loaded, checking initialization...');
       setTimeout(function() {
-        console.log('Checking for functions...');
-        console.log('createBudgetChart:', typeof createBudgetChart);
-        console.log('createDigitalTimeline:', typeof createDigitalTimeline);
-        console.log('updateActiveSection:', typeof updateActiveSection);
-        
         if (typeof createBudgetChart === 'function') {
-          console.log('Creating budget chart...');
           createBudgetChart();
-        } else {
-          console.error('createBudgetChart function not found!');
         }
         if (typeof createDigitalTimeline === 'function') {
-          console.log('Creating digital timeline...');
           createDigitalTimeline();
-        } else {
-          console.error('createDigitalTimeline function not found!');
         }
         if (typeof updateActiveSection === 'function') {
           updateActiveSection();
-        } else {
-          console.error('updateActiveSection function not found!');
         }
-      }, 1500);
+      }, 500);
     });
   </script>
 </body>
