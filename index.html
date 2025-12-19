@@ -556,62 +556,103 @@
     };
   </script>
   
-  <!-- Load main.js with error handling -->
+  <!-- Inline all critical functions so site works even if main.js fails -->
   <script>
-    (function() {
-      function loadScript(src, callback) {
-        const script = document.createElement('script');
-        script.src = src;
-        script.async = false;
-        script.onload = function() {
-          console.log('Successfully loaded:', src);
-          if (callback) callback();
-        };
-        script.onerror = function() {
-          console.error('Failed to load:', src);
-          if (callback) callback(true);
-        };
-        document.head.appendChild(script);
-      }
-      
-      // Try loading main.js
-      loadScript('main.js', function(error) {
-        if (error) {
-          // Try alternative paths
-          loadScript('./main.js', function(error2) {
-            if (error2) {
-              console.error('Could not load main.js from any path');
-            }
-          });
-        }
-      });
-    })();
-  </script>
-  
-  <!-- Initialize after scripts load -->
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        console.log('Initializing features...');
-        if (typeof createBudgetChart === 'function') {
-          console.log('Creating budget chart...');
-          createBudgetChart();
-        } else {
-          console.warn('createBudgetChart not available');
-        }
-        if (typeof createDigitalTimeline === 'function') {
-          console.log('Creating digital timeline...');
-          createDigitalTimeline();
-        } else {
-          console.warn('createDigitalTimeline not available');
-        }
-        if (typeof updateActiveSection === 'function') {
-          updateActiveSection();
-        } else {
-          console.warn('updateActiveSection not available');
-        }
-      }, 1000);
+    // Budget Chart
+    window.createBudgetChart = function() {
+      var container = document.getElementById('budget-chart');
+      if (!container) return;
+      container.innerHTML = '';
+      var budgetData = [{label:'Needs',value:50,color:'#E87899'},{label:'Wants',value:30,color:'#E6C36A'},{label:'Savings',value:20,color:'#A9CBB7'}];
+      var currentAngle = -90;
+      var segments = budgetData.map(function(item,idx){var a=(item.value/100)*360;var sa=currentAngle;var ea=currentAngle+a;currentAngle=ea;var sar=(sa*Math.PI)/180;var ear=(ea*Math.PI)/180;var r=80;var x1=100+r*Math.cos(sar);var y1=100+r*Math.sin(sar);var x2=100+r*Math.cos(ear);var y2=100+r*Math.sin(ear);var laf=a>180?1:0;var pd='M 100 100 L '+x1+' '+y1+' A '+r+' '+r+' 0 '+laf+' 1 '+x2+' '+y2+' Z';return {label:item.label,value:item.value,color:item.color,pathData:pd,index:idx};});
+      var hoveredSegment = null;
+      var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.setAttribute('width','200');svg.setAttribute('height','200');svg.className='budget-chart-svg';
+      var chartContainer = document.createElement('div');
+      chartContainer.style.cssText='position:relative;width:200px;height:200px;margin:0 auto;display:block;';
+      segments.forEach(function(seg){var p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',seg.pathData);p.setAttribute('fill',seg.color);p.style.cursor='pointer';p.style.transition='all 0.3s';p.style.transformOrigin='100px 100px';p.addEventListener('mouseenter',function(){hoveredSegment=seg.index;segments.forEach(function(s,i){var path=svg.querySelector('path:nth-child('+(i+1)+')');if(path){path.style.opacity=(hoveredSegment!==null&&hoveredSegment!==i)?'0.6':'1';path.style.transform=(hoveredSegment===i)?'scale(1.05)':'scale(1)';}});});p.addEventListener('mouseleave',function(){hoveredSegment=null;segments.forEach(function(s,i){var path=svg.querySelector('path:nth-child('+(i+1)+')');if(path){path.style.opacity='1';path.style.transform='scale(1)';}});});svg.appendChild(p);});
+      var center = document.createElement('div');
+      center.className='budget-chart-center';
+      center.innerHTML='<div style="text-align:center;"><div style="font-size:1.5rem;font-weight:700;color:var(--charcoal);">100%</div><div style="font-size:0.875rem;color:rgba(58,58,58,0.6);">Total Budget</div></div>';
+      chartContainer.appendChild(svg);chartContainer.appendChild(center);
+      var title = document.createElement('h4');
+      title.className='budget-chart-title';
+      title.textContent='Budget Allocation Example';
+      var legend = document.createElement('div');
+      legend.className='budget-chart-legend';
+      budgetData.forEach(function(item){var li=document.createElement('div');li.className='budget-legend-item';li.innerHTML='<div style="display:flex;align-items:center;gap:0.75rem;flex:1;"><div class="budget-legend-color" style="background-color:'+item.color+';"></div><span class="budget-legend-label">'+item.label+'</span></div><span class="budget-legend-value">'+item.value+'%</span>';legend.appendChild(li);});
+      var note = document.createElement('p');
+      note.className='budget-chart-note';
+      note.textContent='The 50/30/20 rule: 50% needs, 30% wants, 20% savings';
+      container.appendChild(title);container.appendChild(chartContainer);container.appendChild(legend);container.appendChild(note);
+    };
+    
+    // Digital Timeline
+    window.createDigitalTimeline = function() {
+      var container = document.getElementById('digital-timeline');
+      if (!container) return;
+      container.innerHTML = '';
+      var milestones = [{year:'1990s',title:'Internet Revolution',desc:'World Wide Web becomes accessible to the public'},{year:'2000s',title:'Social Media Era',desc:'Platforms like Facebook and Twitter reshape communication'},{year:'2010s',title:'Mobile First',desc:'Smartphones become primary digital devices'},{year:'2020s',title:'AI Integration',desc:'Artificial intelligence becomes mainstream in daily life'}];
+      var title = document.createElement('h4');
+      title.className='timeline-title';
+      title.textContent='Digital Evolution Timeline';
+      var tc = document.createElement('div');
+      tc.className='timeline-container';
+      var line = document.createElement('div');
+      line.className='timeline-line';
+      var items = document.createElement('div');
+      items.className='timeline-items';
+      milestones.forEach(function(m){var item=document.createElement('div');item.className='timeline-item';var iw=document.createElement('div');iw.className='timeline-icon-wrapper';var ic=document.createElement('div');ic.className='timeline-icon-circle';ic.innerHTML='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';iw.appendChild(ic);var c=document.createElement('div');c.className='timeline-content';var y=document.createElement('div');y.className='timeline-year';y.textContent=m.year;var t=document.createElement('h5');t.textContent=m.title;var d=document.createElement('p');d.className='timeline-description';d.textContent=m.desc;c.appendChild(y);c.appendChild(t);c.appendChild(d);item.appendChild(iw);item.appendChild(c);items.appendChild(item);});
+      tc.appendChild(line);tc.appendChild(items);
+      container.appendChild(title);container.appendChild(tc);
+    };
+    
+    // Active Section Detection
+    window.activeSection = 'home';
+    var sections = ['home','about','ed206','overview','media','financial','digital','eco','references'];
+    window.updateActiveSection = function() {
+      var sp = window.scrollY + 200;
+      for(var i=sections.length-1;i>=0;i--){var s=document.getElementById(sections[i]);if(s){var st=s.offsetTop;var sh=s.offsetHeight;var sb=st+sh;if(sp>=st&&sp<sb){if(window.activeSection!==sections[i]){window.activeSection=sections[i];if(typeof updateNavItems==='function')updateNavItems();}break;}}}
+    };
+    window.updateNavItems = function() {
+      var navs = document.querySelectorAll('.nav-item, .nav-item-mobile');
+      navs.forEach(function(item){var sec=item.getAttribute('data-section');if(sec===window.activeSection){item.classList.add('active');}else{item.classList.remove('active');}});
+    };
+    window.updateScrollProgress = function() {
+      var sp = document.getElementById('scroll-progress');
+      if(!sp)return;
+      var wh = document.documentElement.scrollHeight - window.innerHeight;
+      var sc = window.scrollY;
+      var pr = wh>0?sc/wh:0;
+      sp.style.transform='scaleX('+pr+')';
+    };
+    window.updateNavbar = function() {
+      var nb = document.getElementById('navbar');
+      if(!nb)return;
+      if(window.scrollY>50){nb.classList.add('scrolled');}else{nb.classList.remove('scrolled');}
+    };
+    window.updateScrollToTop = function() {
+      var stt = document.getElementById('scroll-to-top');
+      if(!stt)return;
+      if(window.scrollY>400){stt.classList.add('visible');}else{stt.classList.remove('visible');}
+    };
+    
+    // Initialize on load
+    window.addEventListener('load',function(){
+      setTimeout(function(){
+        createBudgetChart();
+        createDigitalTimeline();
+        updateActiveSection();
+        updateNavbar();
+        updateScrollProgress();
+        updateScrollToTop();
+        window.addEventListener('scroll',function(){updateActiveSection();updateNavbar();updateScrollProgress();updateScrollToTop();},{passive:true});
+      },100);
     });
   </script>
+  
+  <!-- Try to load main.js for any additional features -->
+  <script src="main.js" onerror="console.log('main.js not available, using inline functions')"></script>
 </body>
 </html>
