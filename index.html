@@ -556,23 +556,61 @@
     };
   </script>
   
-  <!-- Load main.js -->
-  <script src="main.js"></script>
+  <!-- Load main.js with error handling -->
+  <script>
+    (function() {
+      function loadScript(src, callback) {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = false;
+        script.onload = function() {
+          console.log('Successfully loaded:', src);
+          if (callback) callback();
+        };
+        script.onerror = function() {
+          console.error('Failed to load:', src);
+          if (callback) callback(true);
+        };
+        document.head.appendChild(script);
+      }
+      
+      // Try loading main.js
+      loadScript('main.js', function(error) {
+        if (error) {
+          // Try alternative paths
+          loadScript('./main.js', function(error2) {
+            if (error2) {
+              console.error('Could not load main.js from any path');
+            }
+          });
+        }
+      });
+    })();
+  </script>
   
-  <!-- Fallback if main.js fails -->
+  <!-- Initialize after scripts load -->
   <script>
     window.addEventListener('load', function() {
       setTimeout(function() {
+        console.log('Initializing features...');
         if (typeof createBudgetChart === 'function') {
+          console.log('Creating budget chart...');
           createBudgetChart();
+        } else {
+          console.warn('createBudgetChart not available');
         }
         if (typeof createDigitalTimeline === 'function') {
+          console.log('Creating digital timeline...');
           createDigitalTimeline();
+        } else {
+          console.warn('createDigitalTimeline not available');
         }
         if (typeof updateActiveSection === 'function') {
           updateActiveSection();
+        } else {
+          console.warn('updateActiveSection not available');
         }
-      }, 500);
+      }, 1000);
     });
   </script>
 </body>
