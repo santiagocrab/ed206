@@ -48,7 +48,7 @@ function updateScrollProgress() {
   const sections = ['home', 'about', 'ed206', 'overview', 'media', 'financial', 'digital', 'eco', 'references'];
   let activeSection = 'home';
   
-  function updateActiveSection() {
+  window.updateActiveSection = function() {
     const scrollPosition = window.scrollY + 200;
     
     for (let i = sections.length - 1; i >= 0; i--) {
@@ -67,7 +67,7 @@ function updateScrollProgress() {
         }
       }
     }
-  }
+  };
   
   function updateNavItems() {
     const navItems = document.querySelectorAll('.nav-item, .nav-item-mobile');
@@ -343,6 +343,9 @@ function updateScrollProgress() {
     container.appendChild(note);
   }
   
+  // Make functions globally accessible
+  window.createBudgetChart = createBudgetChart;
+  
   // ============================================
   // Digital Timeline
   // ============================================
@@ -441,6 +444,9 @@ function updateScrollProgress() {
     container.appendChild(title);
     container.appendChild(timelineContainer);
   }
+  
+  // Make function globally accessible
+  window.createDigitalTimeline = createDigitalTimeline;
   
   // ============================================
   // Current Year in Footer
