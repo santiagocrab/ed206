@@ -988,6 +988,9 @@
     width: 100%;
     max-width: 28rem;
     margin: 0 auto;
+    min-height: 400px;
+    display: block;
+    visibility: visible;
   }
   
   .budget-chart-title {
@@ -1076,6 +1079,9 @@
     width: 100%;
     max-width: 42rem;
     margin: 0 auto;
+    min-height: 400px;
+    display: block;
+    visibility: visible;
   }
   
   .timeline-title {
